@@ -31,6 +31,9 @@ public:
     void OnSuspending();
     void OnResuming();
     void OnWindowSizeChanged(int width, int height);
+	
+	void SetModeCPU() { m_WaveMode = WaveMode::CPU; }
+	void SetModeGPU() { m_WaveMode = WaveMode::GPU; }
 
     // Properties
     void GetDefaultSize( int& width, int& height ) const;

@@ -52,7 +52,7 @@ void Waves::Init(size_t m, size_t n, float dx, float dt, float speed, float damp
 	mVertexCount   = m*n;
 	mTriangleCount = (m-1)*(n-1)*2;
 
-	mTimeStep    = dt;
+	mTimeStep = 0.0f;
 	mSpatialStep = dx;
 
 	float d = damping*dt+2.0f;

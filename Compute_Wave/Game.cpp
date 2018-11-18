@@ -23,6 +23,7 @@ const float dt = 0.03f;
 const float speed = 3.25f;
 const float damping = 0.4f;
 
+const float DisturbPeriod = 0.25f;
 
 Game::Game() noexcept :
     m_window(nullptr),
@@ -140,7 +141,7 @@ void Game::Present()
     // The first argument instructs DXGI to block until VSync, putting the application
     // to sleep until the next VSync. This ensures we don't waste any cycles rendering
     // frames that will never be displayed to the screen.
-    HRESULT hr = m_swapChain->Present(1, 0);
+    HRESULT hr = m_swapChain->Present(0, 0);
 
     // If the device was reset we must completely reinitialize the renderer.
     if (hr == DXGI_ERROR_DEVICE_REMOVED || hr == DXGI_ERROR_DEVICE_RESET)
@@ -575,10 +576,10 @@ void Game::UpdateCPU(DX::StepTimer const& timer)
 	//
 	// Every quarter second, generate a random wave.
 	//
-	static float t_base = 0.0f;
-	if ((timer.GetTotalSeconds() - t_base) >= 0.25f)
+	static double t_base = 0.0f;
+	if ((timer.GetTotalSeconds() - t_base) >= DisturbPeriod)
 	{
-		t_base += 0.25f;
+		t_base = timer.GetTotalSeconds();
 
 		DWORD i = 5 + rand() % 190;
 		DWORD j = 5 + rand() % 190;
@@ -639,10 +640,10 @@ void Game::DumpTexture(ComPtr<ID3D11Texture2D> src, const std::wstring& path)
 void Game::UpdateGPU(DX::StepTimer const& timer)
 {
 	// create new wave using compute shader
-	static float t_base = 0.0f;
-	if ((timer.GetTotalSeconds() - t_base) >= 0.25f)
+	static double t_base = 0.0f;
+	if ((timer.GetTotalSeconds() - t_base) >= DisturbPeriod)
 	{
-		t_base += 0.25f;
+		t_base = timer.GetTotalSeconds();
 
 		DWORD i = 5 + rand() % 190;
 		DWORD j = 5 + rand() % 190;

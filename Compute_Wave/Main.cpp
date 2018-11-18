@@ -117,6 +117,17 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
     switch (message)
     {
+	case WM_KEYUP:
+		if (wParam == '1')
+		{
+			g_game->SetModeCPU();
+		}
+		else if (wParam == '2')
+		{
+			g_game->SetModeGPU();
+		}
+		break;
+
     case WM_PAINT:
         if (s_in_sizemove && game)
         {
@@ -215,7 +226,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         break;
 
     case WM_SYSKEYDOWN:
-        if (wParam == VK_RETURN && (lParam & 0x60000000) == 0x20000000)
+		if (wParam == VK_RETURN && (lParam & 0x60000000) == 0x20000000)
         {
             // Implements the classic ALT+ENTER fullscreen toggle
             if (s_fullscreen)

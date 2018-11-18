@@ -48,7 +48,7 @@
     <FxCompile Include="Shaders\PS_Wave_gpu.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
-    <FxCompile Include="CS_NewWave.hlsl">
+    <FxCompile Include="Shaders\CS_NewWave.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
   </ItemGroup>

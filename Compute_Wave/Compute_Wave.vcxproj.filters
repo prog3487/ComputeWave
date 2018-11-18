@@ -5,16 +5,25 @@
       <UniqueIdentifier>83f28a5b-839f-449d-8905-aee3bad65bad</UniqueIdentifier>
       <Extensions>ico;cur;bmp;dds;dlg;fbx;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tga;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{bd312552-8c71-4205-9143-0a424b80d911}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="StepTimer.h" />
+    <ClInclude Include="Waves.h" />
+    <ClInclude Include="ReadData.h" />
+    <ClInclude Include="MathHelper.h" />
+    <ClInclude Include="Structures.h" />
+    <ClInclude Include="ConstantBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Waves.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />
@@ -28,5 +37,30 @@
     <Manifest Include="settings.manifest">
       <Filter>Assets</Filter>
     </Manifest>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Shaders\PS_wave_cpu.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Shaders\VS_wave_cpu.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Shaders\PS_Wave_gpu.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="CS_NewWave.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\Structures.hlsli">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\CS_Wave.hlsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\VS_Wave_gpu.hlsl">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

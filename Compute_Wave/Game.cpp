@@ -771,7 +771,15 @@ void Game::RenderGPU()
 
 void Game::CalculateFrameStats(DX::StepTimer const& timer)
 {
-	std::wstring fpstxt(L"FPS : ");
-	fpstxt += std::to_wstring(timer.GetFramesPerSecond());
-	::SetWindowText(m_window, fpstxt.c_str());
+	const static float updateGap = 1.0f;
+	static float elapsedTime = 0.0f;
+
+	elapsedTime += (float)timer.GetElapsedSeconds();
+	if (elapsedTime >= updateGap)
+	{
+		std::wstring fpstxt(L"FPS : ");
+		fpstxt += std::to_wstring(timer.GetFramesPerSecond());
+		::SetWindowText(m_window, fpstxt.c_str());
+		elapsedTime -= updateGap;
+	}
 }

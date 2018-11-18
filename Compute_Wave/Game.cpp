@@ -8,6 +8,7 @@
 #include "ReadData.h"
 #include "VertexTypes.h"
 #include "MathHelper.h"
+#include <string>
 
 extern void ExitGame();
 
@@ -74,6 +75,8 @@ void Game::Tick()
 // Updates the world.
 void Game::Update(DX::StepTimer const& timer)
 {
+	CalculateFrameStats(timer);
+
 	// Convert Spherical to Cartesian coordinates.
 	float x = m_Radius * sinf(m_Phi) * cosf(m_Theta);
 	float z = m_Radius * sinf(m_Phi) * sinf(m_Theta);
@@ -220,7 +223,7 @@ void Game::CreateDevice()
     ComPtr<ID3D11Device> device;
     ComPtr<ID3D11DeviceContext> context;
     DX::ThrowIfFailed(D3D11CreateDevice(
-        nullptr,                            // specify nullptr to use the default adapter
+		nullptr,					// specify nullptr to use the default adapter
         D3D_DRIVER_TYPE_HARDWARE,
         nullptr,
         creationFlags,
@@ -766,3 +769,9 @@ void Game::RenderGPU()
 	m_d3dContext->VSSetShaderResources(0, 1, nullViews);
 }
 
+void Game::CalculateFrameStats(DX::StepTimer const& timer)
+{
+	std::wstring fpstxt(L"FPS : ");
+	fpstxt += std::to_wstring(timer.GetFramesPerSecond());
+	::SetWindowText(m_window, fpstxt.c_str());
+}

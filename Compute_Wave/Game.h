@@ -62,7 +62,8 @@ private:
 	void RenderGPU();
 
 
-    // Device resources.
+	void CalculateFrameStats(DX::StepTimer const& timer);
+	// Device resources.
     HWND                                            m_window;
     int                                             m_outputWidth;
     int                                             m_outputHeight;
